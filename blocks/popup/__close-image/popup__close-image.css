@@ -1,0 +1,10 @@
+.popup__close-image {
+    position: relative;
+    cursor: pointer;
+    top: -187px;
+    left: 475px;
+}
+
+.popup__close-image:hover {
+    opacity: 0.6;
+}

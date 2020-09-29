@@ -1,17 +1,23 @@
-# Проект 4: Место
+# Проект 4: Место 
+_________________________________
 
-### Обзор
+## Описание 
+Верстка одностраничника по макету из Figma. Оттачивание навыком адаптивной и "резиновой верстки" + знакомство с js
 
-* Figma
-* Картинки
+### Инструменты 
+1. Flex 
+2. Grid 
+3. Relative values 
+4. Media queries 
+5. Popup opening/closure with js 
+5.1 variables setup 
+5.2 querySelectors 
+5.3 addEventListener 
+5.4 classList.toggle
 
-**Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+#### Ссылка на GitGub Pages 
+https://samlantsman.github.io/mesto
 
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+**Доработка** 
+Исправить все замечения ревьюера :) 
