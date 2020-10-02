@@ -3,6 +3,14 @@
     cursor: pointer;
     top: -187px;
     left: 475px;
+    background-image: url(../../../images/popup__close-image.svg);
+    background-size: cover;
+    width: 58px;
+    height: 58px;
+    background-color: black;
+    border: none;
+    padding: 0;
+    z-index: -1;
 }
 
 .popup__close-image:hover {

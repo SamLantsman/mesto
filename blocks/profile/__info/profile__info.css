@@ -1,14 +1,15 @@
-.profile-info__description {
+.profile__info {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     max-width: 336px;
+    align-self: flex-end;
 }
 
 @media screen and (max-width: 1050px) {
-    .profile-info__description {
-        max-width: 280px;
+    .profile__info {
         margin: 0 auto;
+        margin-bottom: 36px;
         justify-content: center;
     }
 }

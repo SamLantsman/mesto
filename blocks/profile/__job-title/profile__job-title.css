@@ -1,0 +1,9 @@
+.profile__job-title {
+    margin: 0;
+}
+
+@media screen and (max-width: 1050px) {
+    .profile__description {
+        margin: 0 auto;
+    }
+}
