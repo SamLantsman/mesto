@@ -1,14 +1,12 @@
 .header__image {
-    width: 142.01px;
+    width: 142px;
     height: 33.4px;
-    padding-bottom: 40.6px;
 }
 
 @media screen and (max-width: 1050px) {
     .header__image {
         padding-left: 27px;
-        padding-bottom: 31.6px;
-        width: 103.74px;
-        height: 24.4px;
+        width: 104px;
+        height: 24px;
     }
 }

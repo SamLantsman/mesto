@@ -1,13 +1,13 @@
 .profile {
-    color: white;
+    color: #ffffff;
     display: flex;
     justify-content: space-between;
-    padding-top: 40px;
+    margin: 0 auto 50px auto;
 }
 
 @media screen and (max-width: 1050px) {
     .profile {
         flex-direction: column;
-        padding-top: 42px;
+        margin-bottom: 36px;
     }
 }

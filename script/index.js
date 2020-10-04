@@ -16,14 +16,13 @@ let formElement = document.querySelector(".popup__save-button");
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
-    let nameInput = document.querySelector(".popup__text_type_name");
-    let jobInput = document.querySelector(".popup__text_type_job");
+    let Input = document.querySelectorAll(".popup__text");
 
-    let name = nameInput.value;
-    let job = jobInput.value;
+    let name = Input[0].value;
+    let job = Input[1].value;
 
     let newName = document.querySelector(".profile__name");
-    let newJob = document.querySelector(".profile__job-title");
+    let newJob = document.querySelector(".profile__job");
 
     newName.textContent = name;
     newJob.textContent = job;

@@ -5,6 +5,10 @@
     line-height: 56px;
     margin-right: 17px;
     margin-bottom: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 295px;
 }
 
 @media screen and (max-width: 1050px) {

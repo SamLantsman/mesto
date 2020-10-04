@@ -15,4 +15,5 @@
 
 .popup__close-image:hover {
     opacity: 0.6;
+    transition: opacity .2s ease;
 }
