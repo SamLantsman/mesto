@@ -7,6 +7,7 @@
     height: 50px;
     cursor: pointer;
     margin-left: auto;
+    outline: none;
 }
 
 .profile__add-button:hover {

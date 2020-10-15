@@ -9,7 +9,7 @@ _________________________________
 2. Grid 
 3. Relative values 
 4. Media queries 
-5. Popup opening/closure with js 
+5. Popups opening/closure with js 
 5.1 variables setup 
 5.2 querySelectors 
 5.3 addEventListener 

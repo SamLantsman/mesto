@@ -7,9 +7,14 @@
     cursor: pointer;
     background-repeat: no-repeat;
     flex-shrink: 0;
+    outline: none;
 }
 
 .card__like:hover {
     opacity: 0.6;
     transition: opacity .2s ease;
+}
+
+.card__like:visited {
+    opacity: 1;
 }
