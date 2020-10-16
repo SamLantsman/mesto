@@ -9,6 +9,7 @@
     height: 41px;
     border: none;
     padding: 0;
+    outline: none;
 }
 
 .image-popup__close-image:hover {
