@@ -10,6 +10,7 @@
     padding-bottom: 13px;
     margin-top: 30px;
     outline: none;
+    padding-bottom: 5px;
 }
 
 .popup__text::placeholder {

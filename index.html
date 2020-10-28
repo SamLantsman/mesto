@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css">
+    <script src="./script/initialCards.js" defer></script>
     <script src="./script/index.js" defer></script>
+    <script src="./script/validation.js" defer></script>
 </head>
 
 <body>
@@ -31,32 +33,36 @@
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
         <div class="popup popup__edit-profile">
-            <button class="popup__close-image"></button>
-            <form class="popup__content" name="editProfile">
+            <form class="popup__content" name="editProfile" novalidate>
+                <button class="popup__close-image"></button>
                 <h3 class="popup__heading">Редактировать профиль</h3>
-                <input type="text" value="Жак-Ив Кусто" class="popup__text popup__text-name">
-                <input type="text" value="Исследователь океана" class="popup__text popup__text-job">
+                <input type="text" value="Жак-Ив Кусто" class="popup__text popup__text-name" maxlength="40" minlength="2" required id="profile-input">
+                <span class="popup__text_error" id="profile-input-error"></span>
+                <input type="text" value="Исследователь океана" class="popup__text popup__text-job" max="200" minlength="2" required id=job-input>
+                <span class="popup__text_error" id="job-input-error"></span>
                 <button class="popup__save-button" type="submit">
                     Сохранить
                   </button>
             </form>
         </div>
         <div class="popup popup__add-card">
-            <button class="popup__close-image"></button>
-            <form class="popup__content" name="addCard">
+            <form class="popup__content" name="addCard" novalidate>
+                <button class="popup__close-image"></button>
                 <h3 class="popup__heading">Название</h3>
-                <input type="text" placeholder="Новое место" class="popup__text popup__text-place">
-                <input type="text" placeholder="Ссылка на картинку" class="popup__text popup__text-image">
+                <input type="text" placeholder="Новое место" class="popup__text popup__text-place" required maxlength="40" minlength="2" id="name-input">
+                <span class="popup__text_error" id="name-input-error"></span>
+                <input type="url" placeholder="Ссылка на картинку" class="popup__text popup__text-image" required id="link-input">
+                <span class="popup__text_error" id="link-input-error"></span>
                 <button class="popup__save-button" type="submit">
                   Создать
                 </button>
             </form>
         </div>
-        <div class="image-popup">
-            <div class="image-popup__content">
-                <button class="image-popup__close-image"></button>
-                <img class="image-popup__image" alt="Гора Эльбрус" src="images/image-popup__image.png">
-                <p class="image-popup__caption">Горный Алтай</p>
+        <div class="popup popup__image">
+            <div class="popup__image-content">
+                <button class="popup__close-image popup__image-close-image"></button>
+                <img class="popup__image-picture" alt="Гора Эльбрус" src="images/image-popup__image.png">
+                <p class="popup__caption">Горный Алтай</p>
             </div>
         </div>
     </div>
