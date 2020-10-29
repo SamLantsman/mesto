@@ -38,7 +38,6 @@ const gallery = document.querySelector(".gallery");
 
 const template = document.querySelector(".template");
 
-
 buttonOpenPopupEditProfile.addEventListener("click", () => {
     openPopup(popupEditProfile);
     nameInput.value = nameElement.textContent;
@@ -57,15 +56,13 @@ buttonClosePopupEditProfile.addEventListener("click", () => {
 });
 
 function closePopup(popup) {
-    popup.classList.remove('popup_is-opened');
+    popup.classList.remove("popup_is-opened");
     document.removeEventListener("keydown", escPopupCloser);
-
-};
+}
 
 const openPopup = (popup) => {
-    popup.classList.add('popup_is-opened');
+    popup.classList.add("popup_is-opened");
     document.addEventListener("keydown", escPopupCloser);
-
 };
 
 buttonClosePopupAddCard.addEventListener("click", () => {
@@ -120,8 +117,6 @@ const escPopupCloser = (evt) => {
     if (evt.key === "Escape") {
         closePopup(overlay);
     }
-
-    document.removeEventListener("keydown", escPopupCloser);
 };
 
 const renderCards = () => {
