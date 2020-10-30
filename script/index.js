@@ -42,13 +42,10 @@ buttonOpenPopupEditProfile.addEventListener("click", () => {
     openPopup(popupEditProfile);
     nameInput.value = nameElement.textContent;
     jobInput.value = jobElement.textContent;
-
-    document.addEventListener("keydown", escPopupCloser);
 });
 
 buttonOpenPopupAddCard.addEventListener("click", () => {
     openPopup(popupAddCard);
-    document.addEventListener("keydown", escPopupCloser);
 });
 
 buttonClosePopupEditProfile.addEventListener("click", () => {
