@@ -14,6 +14,9 @@ _________________________________
 5.2 querySelectors 
 5.3 addEventListener 
 5.4 classList.toggle
+6. OOP methods 
+6.1 Card rendiring with class module
+6.2 Field validation with class module
 
 
 #### Ссылка на GitGub Pages 
