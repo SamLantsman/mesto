@@ -11,9 +11,10 @@ import {
     buttonClosePopupEditProfile,
     buttonOpenPopupAddCard,
     buttonClosePopupAddCard,
-    saveButtonEditProfile,
     popupEditProfile,
+    popupEditProfileForm,
     popupAddCard,
+    popupAddCardForm,
     popupFullImage,
     saveButtonAddCard,
     place,
@@ -31,7 +32,6 @@ buttonOpenPopupEditProfile.addEventListener("click", () => {
 
 buttonClosePopupEditProfile.addEventListener("click", () => {
     closePopup(popupEditProfile);
-
 });
 
 buttonOpenPopupAddCard.addEventListener("click", () => {
@@ -40,15 +40,17 @@ buttonOpenPopupAddCard.addEventListener("click", () => {
 
 buttonClosePopupAddCard.addEventListener("click", () => {
     closePopup(popupAddCard);
+    place.value = "";
+    link.value = "";
 });
 
 buttonClosePopupFullImage.addEventListener("click", () => {
     closePopup(popupFullImage);
 });
 
-saveButtonEditProfile.addEventListener("click", formSubmitHandler);
+popupEditProfileForm.addEventListener("submit", editProfileSubmitter);
 
-function formSubmitHandler(evt) {
+function editProfileSubmitter(evt) {
     evt.preventDefault();
 
     nameElement.textContent = nameInput.value;
@@ -68,7 +70,7 @@ initialCards.forEach((item) => {
     gallery.append(cardElement);
 });
 
-saveButtonAddCard.addEventListener("click", (evt) => {
+popupAddCardForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
 
     const data = { name: place.value, link: link.value };
@@ -76,10 +78,13 @@ saveButtonAddCard.addEventListener("click", (evt) => {
     const cardElement = card.generateCard();
     gallery.prepend(cardElement);
 
-    closePopup(popupAddCard);
-
-    place.value = "";
+    place.value = "ffff";
     link.value = "";
+
+    saveButtonAddCard.disabled = true;
+    saveButtonAddCard.classList.add("popup__save-button_invalid");
+
+    closePopup(popupAddCard);
 });
 
 const popupEditProfileValidation = new FormValidator(data, popupEditProfile);

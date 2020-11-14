@@ -6,10 +6,15 @@ export const popupAddCard = document.querySelector(".popup__add-card");
 export const saveButtonAddCard = popupAddCard.querySelector(
     ".popup__save-button"
 );
+export const popupAddCardForm = popupAddCard.querySelector(".popup__content");
+
 export const place = document.querySelector(".popup__text-place");
 export const link = document.querySelector(".popup__text-image");
 
 export const popupEditProfile = document.querySelector(".popup__edit-profile");
+export const popupEditProfileForm = popupEditProfile.querySelector(
+    ".popup__content"
+);
 
 export const buttonOpenPopupEditProfile = document.querySelector(
     ".profile__edit-button"
@@ -27,10 +32,6 @@ export const buttonClosePopupAddCard = popupAddCard.querySelector(
 
 export const buttonClosePopupFullImage = popupFullImage.querySelector(
     ".popup__close-image"
-);
-
-export const saveButtonEditProfile = popupEditProfile.querySelector(
-    ".popup__save-button"
 );
 
 export const nameElement = document.querySelector(".profile__name");
