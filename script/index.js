@@ -78,7 +78,7 @@ popupAddCardForm.addEventListener("submit", (evt) => {
     const cardElement = card.generateCard();
     gallery.prepend(cardElement);
 
-    place.value = "ffff";
+    place.value = "";
     link.value = "";
 
     saveButtonAddCard.disabled = true;
