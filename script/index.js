@@ -64,6 +64,12 @@ popupAddCard.addEventListener("click", backgroundPopupCloser);
 
 popupFullImage.addEventListener("click", backgroundPopupCloser);
 
+const popupEditProfileValidation = new FormValidator(data, popupEditProfile);
+popupEditProfileValidation.enableValidation();
+
+const popupAddCardValidation = new FormValidator(data, popupAddCard);
+popupAddCardValidation.enableValidation();
+
 initialCards.forEach((item) => {
     const card = new Card(item, ".template");
     const cardElement = card.generateCard();
@@ -81,14 +87,6 @@ popupAddCardForm.addEventListener("submit", (evt) => {
     place.value = "";
     link.value = "";
 
-    saveButtonAddCard.disabled = true;
-    saveButtonAddCard.classList.add("popup__save-button_invalid");
-
+    popupAddCardValidation.saveButtonDisabler();
     closePopup(popupAddCard);
 });
-
-const popupEditProfileValidation = new FormValidator(data, popupEditProfile);
-popupEditProfileValidation.enableValidation();
-
-const popupAddCardValidation = new FormValidator(data, popupAddCard);
-popupAddCardValidation.enableValidation();

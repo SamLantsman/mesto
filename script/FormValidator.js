@@ -29,40 +29,45 @@ export class FormValidator {
         }
     }
 
-    _toggleButtonState(input) {
-        if (input.checkValidity()) {
-            this._form
-                .querySelector(this._submitButtonSelector)
-                .classList.remove(this._inactiveButtonClass);
-            this._form.querySelector(this._submitButtonSelector).disabled = false;
+    _toggleButtonState(input, buttonElement, form) {
+        if (form.checkValidity()) {
+            buttonElement.classList.remove(this._inactiveButtonClass);
+            buttonElement.disabled = false;
         } else {
-            this._form
-                .querySelector(this._submitButtonSelector)
-                .classList.add(this._inactiveButtonClass);
-            this._form.querySelector(this._submitButtonSelector).disabled = true;
+            this.saveButtonDisabler(buttonElement);
         }
     }
 
-    _setEventlistener() {
+    _setEventlistener(form) {
         const inputElements = Array.from(
             this._form.querySelectorAll(this._inputSelector)
         );
+        const buttonElement = this._form.querySelector(this._submitButtonSelector);
         inputElements.forEach((input) => {
-            input.addEventListener("input", () => {
-                this._checkInputValidity(input);
-                this._toggleButtonState(input);
+            input.addEventListener("input", (evt) => {
+                this._checkInputValidity(input, evt.target);
+                this._toggleButtonState(input, buttonElement, form);
             });
-            this._toggleButtonState(input);
         });
+
+        this._toggleButtonState(
+            this._form.querySelector(this._inputSelector),
+            buttonElement, form
+        );
+    }
+
+    saveButtonDisabler(buttonElement) {
+        buttonElement = this._form.querySelector(this._submitButtonSelector);
+        buttonElement.classList.add(this._inactiveButtonClass);
+        buttonElement.disabled = true;
     }
 
     enableValidation() {
-        this._form
-            .querySelector(this._formSelector)
-            .addEventListener("submit", (evt) => {
-                evt.preventDefault();
-            });
+        const form = this._form.querySelector(this._formSelector);
+        form.addEventListener("submit", (evt) => {
+            evt.preventDefault();
+        });
 
-        this._setEventlistener();
+        this._setEventlistener(form);
     }
 }
