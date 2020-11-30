@@ -17,6 +17,10 @@ _________________________________
 6. OOP methods 
 6.1 Card rendiring with class module
 6.2 Field validation with class module
+6.3 Section class with function callback
+6.4 Popup classes
+6.5 UserInfo class
+7. Webpack set up
 
 
 #### Ссылка на GitGub Pages 
