@@ -36,10 +36,12 @@ export default class Card {
                 this._handleRemoveCard();
             });
 
+        const data = { name: this._name, link: this._link, alt: this._alt };
+
         this._element
             .querySelector(".card__image")
             .addEventListener("click", () => {
-                this._handleCardClick();
+                this._handleCardClick(data);
             });
     }
 
@@ -50,6 +52,7 @@ export default class Card {
     }
 
     _handleRemoveCard() {
-        this._element.closest(".card").remove();
+        this._element.remove();
+        this._element = null;
     }
 }
