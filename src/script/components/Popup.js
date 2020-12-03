@@ -3,21 +3,14 @@ export default class Popup {
         this._popupSelector = document.querySelector(popupSelector);
     }
 
-    open(data) {
+    open() {
         this._popupSelector.classList.add("popup_is-opened");
-        console.log('два хуя')
-        this._popupSelector.querySelector(".popup__text-name").value = data.userName;
-        this._popupSelector.querySelector(".popup__text-job").value = data.userJob;
-        document.addEventListener("keydown", (evt) => {
-            this._handleEscClose(evt).bind(this);
-        });
+        document.addEventListener("keydown", this._handleEscClose.bind(this));
     }
 
     close() {
         this._popupSelector.classList.remove("popup_is-opened");
-        document.removeEventListener("keydown", (evt) => {
-            this._handleEscClose(evt).bind(this);
-        });
+        document.removeEventListener("keydown", this._handleEscClose.bind(this));
     }
 
     _handleEscClose(evt) {

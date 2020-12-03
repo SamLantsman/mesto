@@ -4,6 +4,9 @@ export const popupAddCard = document.querySelector(".popup__add-card");
 export const place = document.querySelector(".popup__text-place");
 export const link = document.querySelector(".popup__text-image");
 
+export const nameImput = document.querySelector(".popup__text-name");
+export const jobImput = document.querySelector(".popup__text-job");
+
 export const popupEditProfile = document.querySelector(".popup__edit-profile");
 
 export const buttonOpenPopupEditProfile = document.querySelector(

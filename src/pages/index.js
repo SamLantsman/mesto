@@ -3,7 +3,8 @@ import { initialCards } from "../script/initialCards.js";
 import Card from "../script/components/Card.js";
 import Section from "../script/components/Section.js";
 import {
-    gallery,
+    nameImput,
+    jobImput,
     buttonOpenPopupEditProfile,
     buttonOpenPopupAddCard,
     popupEditProfile,
@@ -18,7 +19,12 @@ import PopupWithForm from "../script/components/PopupWithForm.js";
 import UserInfo from "../script/components/UserInfo.js";
 
 buttonOpenPopupEditProfile.addEventListener("click", () => {
-    PopupEditProfile.open(user.getUserInfo());
+    const inputValues = user.getUserInfo();
+
+    nameImput.value = inputValues.userName;
+    jobImput.value = inputValues.userJob;
+
+    PopupEditProfile.open();
 });
 
 buttonOpenPopupAddCard.addEventListener("click", () => {
