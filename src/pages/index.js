@@ -12,7 +12,7 @@ import {
     buttonOpenPopupEditProfile,
     buttonOpenPopupAddCard,
     buttonOpenPopupUpdateAvatar,
-    popupSaveButton,
+    popupUpdateAvatar,
     popupEditProfile,
     popupAddCard,
     place,
@@ -39,25 +39,12 @@ buttonOpenPopupUpdateAvatar.addEventListener("click", () => {
     PopupUpdateAvatar.open();
 });
 
-const popupEditProfileValidation = new FormValidator(data, popupEditProfile);
-popupEditProfileValidation.enableValidation();
-
-const popupAddCardValidation = new FormValidator(data, popupAddCard);
-popupAddCardValidation.enableValidation();
-
-const fullImagePopup = new PopupWithImage(initialCards, ".popup__image");
-fullImagePopup.setEventListeners();
-
-const user = new UserInfo({
-    nameSelector: ".profile__name",
-    jobSelector: ".profile__job",
-});
-
 const PopupEditProfile = new PopupWithForm({
     popupSelector: ".popup__edit-profile",
     handleFormSubmit: (formData) => {
         const userInfo = api.updateUserInfo(formData);
-        userInfo.then((data) => {
+        userInfo
+            .then((data) => {
                 user.setUserInfo(data);
             })
             .finally(() => {
@@ -67,23 +54,38 @@ const PopupEditProfile = new PopupWithForm({
         PopupEditProfile.close();
     },
 });
+const popupEditProfileValidation = new FormValidator(data, popupEditProfile);
+popupEditProfileValidation.enableValidation();
+
+PopupEditProfile.setEventListeners();
+
+const popupAddCardValidation = new FormValidator(data, popupAddCard);
+popupAddCardValidation.enableValidation();
 
 const PopupUpdateAvatar = new PopupWithForm({
     popupSelector: ".popup__update-avatar",
     handleFormSubmit: () => {
         const newAvatar = api.updateAvatar(avatarInput.value);
-        newAvatar.then((data) => {
-            avatar.src = data.avatar;
-            PopupUpdateAvatar.close();
-        }).finally(() => {
-            PopupUpdateAvatar.setSubitButtonText("Сохранить");
-        });
+        newAvatar
+            .then((data) => {
+                avatar.src = data.avatar;
+                PopupUpdateAvatar.close();
+            })
+            .finally(() => {
+                PopupUpdateAvatar.setSubitButtonText("Сохранить");
+            });
     },
 });
 
 PopupUpdateAvatar.setEventListeners();
 
-PopupEditProfile.setEventListeners();
+const PopupUpdateAvatarValidation = new FormValidator(data, popupUpdateAvatar);
+PopupUpdateAvatarValidation.enableValidation();
+
+const user = new UserInfo({
+    nameSelector: ".profile__name",
+    jobSelector: ".profile__job",
+});
 
 const api = new Api({
     url: "https://mesto.nomoreparties.co./v1/cohort-18/",
@@ -97,19 +99,20 @@ const userInfo = api.getUserInfo();
 
 let userId = null;
 
-userInfo
-    .then((data) => {
-        profileName.textContent = data.name;
-        profileJob.textContent = data.about;
-        avatar.src = data.avatar;
-        userId = data._id;
-    })
-    .catch();
+userInfo.then((data) => {
+    profileName.textContent = data.name;
+    profileJob.textContent = data.about;
+    avatar.src = data.avatar;
+    userId = data._id;
+});
 
 const cardInfo = api.getCardsInfo();
 
 cardInfo.then((data) => {
     const PopupDeleteCard = new PopupWithSubmit(".popup__delete-card");
+
+    const fullImagePopup = new PopupWithImage(data, ".popup__image");
+    fullImagePopup.setEventListeners();
 
     PopupDeleteCard.setEventListeners();
     const generateCard = (data) => {
@@ -121,9 +124,12 @@ cardInfo.then((data) => {
                 handleDeleteIconClick: (cardId) => {
                     PopupDeleteCard.setSubmitAction(() => {
                         api.deleteCard(cardId).then(() => {
-                            PopupDeleteCard.close();
-                            card.removeCard();
-                        });
+                                PopupDeleteCard.close();
+                                card.removeCard();
+                            })
+                            .finally(() => {
+                                PopupDeleteCard.setSubmitButtonText("Да")
+                            });
                     });
                     PopupDeleteCard.open();
                 },
@@ -178,7 +184,7 @@ cardInfo.then((data) => {
                     PopupAddCard.close();
                 })
                 .finally(() => {
-                    PopupAddCard.setSubitButtonText("Создать");;
+                    PopupAddCard.setSubitButtonText("Создать");
                 });
         },
     });
