@@ -5,6 +5,7 @@
     line-height: 29px;
     white-space: nowrap;
     padding-bottom: 54px;
+    margin-top: -49px;
 }
 
 @media screen and (max-width: 570px) {

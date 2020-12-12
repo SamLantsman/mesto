@@ -1,12 +1,8 @@
 .profile__image {
-    margin-right: 30px;
-    max-width: 120px;
-    max-height: 120px;
-}
-
-@media screen and (max-width: 1050px) {
-    .profile__image {
-        margin: 0 auto;
-        padding-bottom: 14px;
-    }
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 100px;
+    display: block;
+    text-align: center;
 }
