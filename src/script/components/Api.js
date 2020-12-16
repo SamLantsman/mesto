@@ -6,138 +6,106 @@ export default class Api {
 
     getUserInfo() {
         return fetch(`${this._url}users/me`, {
-                headers: this._headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 
     updateUserInfo(data) {
         return fetch(`${this._url}users/me`, {
-                method: "PATCH",
-                headers: this._headers,
-                body: JSON.stringify({
-                    name: data.name,
-                    about: data.job,
-                }),
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                about: data.job,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 
     getCardsInfo() {
         return fetch(`${this._url}cards`, {
-                headers: this._headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 
     addNewCard(newCard) {
         return fetch(`${this._url}cards`, {
-                method: "POST",
-                headers: this._headers,
-                body: JSON.stringify({
-                    name: newCard.name,
-                    link: newCard.link,
-                }),
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: newCard.name,
+                link: newCard.link,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 
     deleteCard(cardId) {
         return fetch(`${this._url}cards/${cardId}`, {
-                method: "DELETE",
-                headers: this._headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            method: "DELETE",
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 
     updateAvatar(data) {
         return fetch(`${this._url}users/me/avatar`, {
-                method: "PATCH",
-                headers: this._headers,
-                body: JSON.stringify({
-                    avatar: data,
-                }),
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: data,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 
     addLike(cardId) {
         return fetch(`${this._url}cards/likes/${cardId}`, {
-                method: "PUT",
-                headers: this._headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            method: "PUT",
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 
     removeLike(cardId) {
         return fetch(`${this._url}cards/likes/${cardId}`, {
-                method: "DELETE",
-                headers: this._headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            method: "DELETE",
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
 }

@@ -32,7 +32,7 @@
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
         <div class="popup popup__edit-profile">
-            <form class="popup__content" name="editProfile" novalidate>
+            <form class="popup__content popup__edit-profile-content" name="editProfile" novalidate>
                 <button class="popup__close-image" type="button"></button>
                 <h3 class="popup__heading">Редактировать профиль</h3>
                 <input type="text" name="name" value="Жак-Ив Кусто" class="popup__text popup__text-name" maxlength="40" minlength="2" required id="profile-input">
@@ -45,7 +45,7 @@
             </form>
         </div>
         <div class="popup popup__add-card">
-            <form class="popup__content" name="addCard" novalidate>
+            <form class="popup__content popup__add-card-content" name="addCard" novalidate>
                 <button class="popup__close-image" type="button"></button>
                 <h3 class="popup__heading">Название</h3>
                 <input type="text" placeholder="Новое место" class="popup__text popup__text-place" required maxlength="40" minlength="2" id="name-input">

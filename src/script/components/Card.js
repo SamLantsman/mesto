@@ -34,15 +34,11 @@ export default class Card {
             ".card__like-counter"
         ).textContent = this._data.likes.length;
 
-        if (this._userId == this._owner) {
+        if (this._userId === this._owner) {
             this._element.querySelector(".card__delete").style.display = "block";
         }
 
-        if (this.isLiked()) {
-            this._element
-                .querySelector(".card__like")
-                .classList.add("card__like_clicked");
-        }
+        this._updateLikesView();
         cardElement.src = this._link;
         cardElement.alt = this._alt;
         this._setEventListeners();
@@ -75,9 +71,17 @@ export default class Card {
             .classList.add("popup_is-opened");
     }
 
+    _updateLikesView() {
+        if (this.isLiked()) {
+            this._element
+                .querySelector(".card__like")
+                .classList.add("card__like_clicked");
+        }
+    }
+
     isLiked() {
         for (let i in this._data.likes) {
-            if (this._data.likes[i]._id == this._userId) {
+            if (this._data.likes[i]._id === this._userId) {
                 return true;
             }
         }
