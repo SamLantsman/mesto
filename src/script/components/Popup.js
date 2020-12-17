@@ -20,7 +20,6 @@ export default class Popup {
     }
 
     _handleOverlayClose(evt) {
-        const overlay = document.querySelector(".popup_is-opened");
         if (evt.target !== evt.currentTarget) {
             return;
         }

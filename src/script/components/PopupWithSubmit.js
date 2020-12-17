@@ -1,9 +1,7 @@
 import Popup from "./Popup.js";
-import renderLoading from "./utils.js";
 export default class PopupWithSubmit extends Popup {
     setEventListeners() {
         this._popupSelector.addEventListener("submit", (evt) => {
-            renderLoading(true, this._popupSelector);
             evt.preventDefault();
             this._handleSubmitCallback();
         });
@@ -18,7 +16,4 @@ export default class PopupWithSubmit extends Popup {
         this._handleSubmitCallback();
     }
 
-    setSubmitButtonText() {
-        renderLoading(false, this._popupSelector);
-    }
 }

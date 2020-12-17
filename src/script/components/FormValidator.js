@@ -7,6 +7,7 @@ export default class FormValidator {
         this._inactiveButtonClass = data.inactiveButtonClass;
         this._inputErrorClass = data.inputErrorClass;
         this._errorClass = data.errorClass;
+        this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
     }
 
     _showError(input) {
@@ -39,20 +40,26 @@ export default class FormValidator {
     }
 
     _setEventlistener(form) {
-        const inputElements = Array.from(
-            this._form.querySelectorAll(this._inputSelector)
-        );
+        const closeImage = this._form.querySelector(".popup__close-image");
         const buttonElement = this._form.querySelector(this._submitButtonSelector);
-        inputElements.forEach((input) => {
+        this._inputs.forEach((input) => {
             input.addEventListener("input", (evt) => {
                 this._checkInputValidity(input, evt.target);
                 this._toggleButtonState(input, buttonElement, form);
             });
         });
 
+        this._form.parentElement.addEventListener("click", (evt) => {
+            if (evt.target !== evt.currentTarget && evt.target !== closeImage) {
+                return;
+            }
+            this._resetInputErrors();
+        });
+
         this._toggleButtonState(
             this._form.querySelector(this._inputSelector),
-            buttonElement, form
+            buttonElement,
+            form
         );
     }
 
@@ -67,7 +74,12 @@ export default class FormValidator {
         form.addEventListener("submit", (evt) => {
             evt.preventDefault();
         });
-
         this._setEventlistener(form);
+    }
+
+    _resetInputErrors() {
+        this._inputs.forEach((input) => {
+            this._hideError(input);
+        });
     }
 }

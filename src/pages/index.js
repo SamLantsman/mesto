@@ -1,6 +1,7 @@
 import "./index.css";
 import Card from "../script/components/Card.js";
 import Section from "../script/components/Section.js";
+import renderLoading from "../script/utils/utils.js";
 import {
     nameImput,
     jobImput,
@@ -11,6 +12,7 @@ import {
     avatarInput,
     avatar,
     avatarSelector,
+    popupAvatar,
     buttonOpenPopupEditProfile,
     buttonOpenPopupAddCard,
     buttonOpenPopupUpdateAvatar,
@@ -18,8 +20,11 @@ import {
     popupUpdateAvatarSelector,
     popupEditProfileForm,
     popupEditProfileSelector,
+    popupProfile,
+    popupAddCardForm,
     popupAddCard,
     popupDeleteCardSelector,
+    popupDelete,
     popupFullImageSelector,
     cardTemplateSelector,
     gallerySectionSelector,
@@ -27,7 +32,7 @@ import {
     place,
     link,
     data,
-} from "../script/constants.js";
+} from "../script/utils/constants.js";
 import FormValidator from "../script/components/FormValidator.js";
 import PopupWithImage from "../script/components/PopupWithImage.js";
 import PopupWithForm from "../script/components/PopupWithForm.js";
@@ -51,17 +56,17 @@ buttonOpenPopupUpdateAvatar.addEventListener("click", () => {
 const popupEditProfile = new PopupWithForm({
     popupSelector: popupEditProfileSelector,
     handleFormSubmit: (formData) => {
+        renderLoading(true, popupProfile);
         const userInfo = api.updateUserInfo(formData);
         userInfo
             .then((data) => {
                 user.setUserInfo(data);
-                console.log(data);
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
-                popupEditProfile.setSubitButtonText("Сохранить");
+                renderLoading(false, popupProfile);
                 popupEditProfile.close();
             });
     },
@@ -74,23 +79,24 @@ popupEditProfileValidation.enableValidation();
 
 popupEditProfile.setEventListeners();
 
-const popupAddCardValidation = new FormValidator(data, popupAddCard);
+const popupAddCardValidation = new FormValidator(data, popupAddCardForm);
 popupAddCardValidation.enableValidation();
 
 const popupUpdateAvatar = new PopupWithForm({
     popupSelector: popupUpdateAvatarSelector,
     handleFormSubmit: () => {
+        renderLoading(true, popupAvatar);
         const newAvatar = api.updateAvatar(avatarInput.value);
         newAvatar
             .then((data) => {
                 avatar.src = data.avatar;
-                popupUpdateAvatar.close();
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
-                popupUpdateAvatar.setSubitButtonText("Сохранить");
+                renderLoading(false, popupAvatar);
+                popupUpdateAvatar.close();
             });
     },
 });
@@ -144,17 +150,18 @@ Promise.all([userInfo, cardInfo])
                     },
                     handleDeleteIconClick: (cardId) => {
                         popupDeleteCard.setSubmitAction(() => {
+                            renderLoading(true, popupDelete);
                             api
                                 .deleteCard(cardId)
                                 .then(() => {
-                                    popupDeleteCard.close();
                                     card.removeCard();
                                 })
                                 .catch((err) => {
                                     console.log(err);
                                 })
                                 .finally(() => {
-                                    popupDeleteCard.setSubmitButtonText();
+                                    popupDeleteCard.close();
+                                    renderLoading(false, popupDelete);
                                 });
                         });
                         popupDeleteCard.open();
@@ -201,10 +208,11 @@ Promise.all([userInfo, cardInfo])
         );
 
         cardList.renderItems();
-        const popupAddCard = new PopupWithForm({
+        const popupAddCardForm = new PopupWithForm({
             popupSelector: popupAddCardSelector,
             handleFormSubmit: () => {
                 const newCard = { name: place.value, link: link.value };
+                renderLoading(true, popupAddCard);
 
                 const renderNewCard = api.addNewCard(newCard);
 
@@ -215,20 +223,20 @@ Promise.all([userInfo, cardInfo])
                         link.value = "";
 
                         popupAddCardValidation.saveButtonDisabler();
-                        popupAddCard.close();
                     })
                     .catch((err) => {
                         console.log(err);
                     })
                     .finally(() => {
-                        popupAddCard.setSubitButtonText();
+                        popupAddCardForm.close();
+                        renderLoading(false, popupAddCard);
                     });
             },
         });
-        popupAddCard.setEventListeners();
+        popupAddCardForm.setEventListeners();
 
         buttonOpenPopupAddCard.addEventListener("click", () => {
-            popupAddCard.open();
+            popupAddCardForm.open();
         });
     })
     .catch((err) => {
