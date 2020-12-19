@@ -1,5 +1,6 @@
 .profile__avatar {
     margin-right: 30px;
+    max-height: 120px;
 }
 
 .profile__avatar:hover .profile__image {

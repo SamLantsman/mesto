@@ -90,6 +90,7 @@ const popupUpdateAvatar = new PopupWithForm({
         newAvatar
             .then((data) => {
                 avatar.src = data.avatar;
+                popupUpdateAvatarValidation.saveButtonDisabler();
             })
             .catch((err) => {
                 console.log(err);
